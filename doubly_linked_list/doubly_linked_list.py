@@ -77,14 +77,11 @@ class DoublyLinkedList:
         new_node = ListNode(value, None, None)
         self.length += 1
 
-        # there is a tail
         if self.tail:
             self.tail.next = new_node
             new_node.prev = self.tail
-        # there is no tail
         else:
             self.head = new_node
-
         self.tail = new_node
 
     """Removes the List's current tail node, making the 
