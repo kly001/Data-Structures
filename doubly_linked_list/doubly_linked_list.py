@@ -44,6 +44,20 @@ class DoublyLinkedList:
     def __len__(self):
         return self.length
 
+    def find_middle(self):
+        middle = self.head
+        end = self.head
+        while end.next != None and end.next.next != None:
+            end = end.next.next
+            middle = middle.next
+        return middle
+
+
+    # def iterate_list(node):
+    #     while node is not None:
+    #         print(node.value)
+    #         node = node.next
+
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
@@ -159,3 +173,15 @@ class DoublyLinkedList:
         #     current_node = current_node.next
 
         # return highest_value
+
+dll = DoublyLinkedList()
+dll.add_to_tail(1)
+dll.add_to_tail(2)
+dll.add_to_tail(3)
+dll.add_to_tail(4)
+dll.add_to_tail(5)
+dll.add_to_tail(6)
+
+
+middle = dll.find_middle()
+print(middle.value)
