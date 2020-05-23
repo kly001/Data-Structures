@@ -16,8 +16,6 @@ Stretch: What if you could only use instances of your Stack class to implement t
 
 import sys
 
-# print(type(sys.path))
-
 sys.path.append('../doubly_linked_list')
 
 from doubly_linked_list import DoublyLinkedList
@@ -39,6 +37,6 @@ class Queue:
             return None
 
         remove_value = self.storage.remove_from_head()
-        self.size -+ 1
+        self.size -= 1
 
         return remove_value
