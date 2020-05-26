@@ -173,11 +173,22 @@ class TextBuffer:
         self.storage = DoublyLinkedList()
 
     def __str__(self):
-        pass
+        string_to_return = ""
+
+        node = self.storage.head
+        while node is not None:
+            string_to_return += node.value
+            node = node.next
+        return string_to_return
         
 
     def join(self, other_buffer):
-        pass
+        # link the tail of this buffer to the head of the other_buffer
+        self.storage.tail.next = other_buffer.storage.head
+        other_buffer.storage.head.prev = self.storage.tail
+
+        # point our tail to the new tail
+        self.storage.tail = other_buffer.storage.tail
 
     def append(self, string_to_add):
         
@@ -188,13 +199,45 @@ class TextBuffer:
         for char in string_to_add:
             self.storage.add_to_head(char)
 
-    def delete_from_front(self, string_to_add):
-        for x in range(number_of_chars_to_remove):
-            self.storage.remove_from_front()
+    # def delete_from_front(self, string_to_add):
+    #     for x in range(number_of_chars_to_remove):
+    #         self.storage.remove_from_front()
 
-    def delete_from_back(self, string_to_add):
-        for x in range(number_of_chars_to_remove):
-            self.storage.remove_from_tail()
+    # def delete_from_back(self, string_to_add):
+    #     for x in range(number_of_chars_to_remove):
+    #         self.storage.remove_from_tail()
 
     def find_text(self, text_to_find):
         pass
+
+
+text = TextBuffer()
+text.append('hello,')
+print(text)
+
+
+other_buffer = TextBuffer()
+other_buffer.append(' how are you?')
+print(other_buffer)
+
+text.join(other_buffer)
+print(text)
+
+new_head = TextBuffer()
+new_head.append('Hey there,')
+print(new_head)
+
+new_head.join(text)
+print(new_head)
+
+mid = TextBuffer()
+mid.append('are')
+print(mid)
+
+mid.prepend('K')
+print(mid)
+
+mid.append('n')
+print(mid)
+
+
