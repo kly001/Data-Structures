@@ -179,7 +179,17 @@ class LRUCache:
    
 
     def get(self, key):
-      pass
+          if key not in self.dict:
+            return None
+          
+          node = self.dll.head
+          while node is not None:
+                if key == node.value[0]:
+                  self.dll.move_to_front(node)
+                  break
+                node = node.next
+
+          return self.dict[key]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -192,38 +202,39 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, val):
+        # if key is already stored, overwrite old value
+        if key in self.dict:
+            # overwrite in dictionary
+            self.dict[key] = val
+            # overwrite in dll
+            node = self.dll.head
+            while node is not None:
+                if key == node.value[0]:
+                    node.value[1] = val
+                    # move to head of dll
+                    self.dll.move_to_front(node)
+                    break
+                node = node.next
 
-      # handle case where we are already full
-      if self.current_nodes == self.limit:
-          # delete something (LRU)
-          node = self.dll.tail
-          old_key = node.value[0]
-          self.dll.remove_from_tail()
+        else:
+            # handle case where we are already full
+            if self.current_nodes == self.max_nodes:
+                # delete something (LRU)
+                node = self.dll.tail
+                old_key = node.value[0]
+                self.dll.remove_from_tail()
 
-          del self.dll[old_key]    #OR self.dll.pop[old_key]
-          self.current_nodes -= 1
+                del self.dict[old_key]    #OR self.dll.pop[old_key]
+                self.current_nodes -= 1
+                
+            # if key isn't store and we are not full, just add to cache
+            if key not in self.dict:
+                self.dict[key] = val
+                self.dll.add_to_head([key, val])
 
-        
-      # if key isn't store and we are not full, just add to cache
-      if key not in self.dict:
-          self.dict[key] = val
-          self.dll.add_to_head([key, val])
+                self.current_nodes += 1
 
-          self.current_nodes += 1
-
-      # if key is already stored, overwrite old value
-      else:
-          # overwrite in dictionary
-          self.dict[key] = val
-          # overwrite in dll
-          node = node.add_to_head
-          while node is not None:
-            if key == node.value[0]
-            node.value[1] = val
-             # move to head of dll
-            self.dll.move_to_front(node):
-            break
-          node = node.next
+      
 
 
          
