@@ -28,9 +28,7 @@ Stretch: What if you could only use instances of your Stack class to implement t
 """
 import sys
 
-# print(type(sys.path))
-
-sys.path.append('../doubly_linked_list')
+sys.path.append('..\doubly_linked_list.py')
 
 from doubly_linked_list import DoublyLinkedList
 
