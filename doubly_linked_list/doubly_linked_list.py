@@ -82,7 +82,6 @@ class DoublyLinkedList:
     def remove_from_head(self):
         value = self.head.value
         self.delete(self.head)
-
         return value
 
     """Wraps the given value in a ListNode and inserts it 
@@ -93,11 +92,12 @@ class DoublyLinkedList:
         self.length += 1
 
         if self.tail:
-            self.tail.next = new_node
             new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
         else:
             self.head = new_node
-        self.tail = new_node
+            self.tail = new_node
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
@@ -126,12 +126,10 @@ class DoublyLinkedList:
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
-
         # if list is empty
         if not self.head:
             print("you got nothing on me!")
             return
-        
         self.length -= 1
 
         # if list has just one item
