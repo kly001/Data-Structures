@@ -49,19 +49,43 @@ class BSTNode:
             return self.right.contains(target)
 
     # Return the maximum value found in the tree
-    def get_max(self):
+    def get_max(self): # recursive version
         # we'll keep going right until there are no more nodes on the right side
         if not self.right:
             return self.value
         return self.right.get_max()
 
+    def iterative_get_max(self):
+        current_max = self.value
+        current = self
+    # traverse our structure
+        while current is not None:
+            if current.value > current_max:
+                current_max = current.value
+    # update our current_max variable with the value
+            current = current.right
+        return current_max
+
     # Call the function `fn` on the value of each node
-    def for_each(self, fn):
+    def for_each(self, fn): # recursive version
         fn(self.value)
         if self.left:
             self.left.for_each(fn)
         if self.right:
             self.right.for_each(fn)
+
+    def iterative_for_each(self, fn):
+        stack = []
+        stack.append(self)
+        while  len(stack) > 0:
+            current = stack.pop()
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            
+            fn(current.value)
+
 
     # Part 2 -----------------------
 
