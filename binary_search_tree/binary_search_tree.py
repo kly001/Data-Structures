@@ -99,10 +99,27 @@ class BSTNode:
     def bft_print(self, node):
         pass
 
+        # make a queue
+        # enqueue the node
+        # as long as the queue is not empty,
+        # dequeue from the front; this is the current node
+        #  enqueue the kids of the current node in the queue
+
+
+
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
         pass
+
+        # make a stack
+        # push the node on the stack
+        # as long as the stack is not empty,
+        # pop off the stack, this is our current node
+        # put the kids on the stack; check that they are not none
+
+
+
 
     # Stretch Goals -------------------------
     # Note: Research may be required
