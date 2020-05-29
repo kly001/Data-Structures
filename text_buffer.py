@@ -199,13 +199,13 @@ class TextBuffer:
         for char in string_to_add:
             self.storage.add_to_head(char)
 
-    # def delete_from_front(self, string_to_add):
-    #     for x in range(number_of_chars_to_remove):
-    #         self.storage.remove_from_front()
+    def delete_from_front(self, string_to_add):
+        for x in range(number_of_chars_to_remove):
+            self.storage.remove_from_front()
 
-    # def delete_from_back(self, string_to_add):
-    #     for x in range(number_of_chars_to_remove):
-    #         self.storage.remove_from_tail()
+    def delete_from_back(self, string_to_add):
+        for _ in range(number_of_chars_to_remove):
+            self.storage.remove_from_tail()
 
     def find_text(self, text_to_find):
         pass
